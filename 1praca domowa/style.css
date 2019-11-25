@@ -1,0 +1,357 @@
+/*
+Przeglądarki internetowe nadają znacznikom HTML wartości początkowe,
+które się różnią w zależności od producenta (np. Chrome, Firefox, Opera, Internet Explorer, Microsoft Edge).
+Dlatego popularną praktyką jest tworzenie tzw. resetów,
+czyli plików CSS zawierających reguły, które nadpisują te wartości,
+aby były one jednolite niezalenie od przeglądarki.
+Więcej na ten temat: https://cssreset.com/what-is-a-css-reset/
+*/
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url(./images/background.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    font-family: "Open Sans";
+    
+}
+
+h1, h2, h3 {
+    margin: 0;
+}
+
+h2 {
+    font-weight: bold;
+    font-size: 28px;
+    letter-spacing: 4.5px;
+    color: #EF008E;
+    text-transform: uppercase;
+    text-align: right;
+    margin-bottom: 40px;
+}
+h3{
+    font-weight: bold;
+    font-size: 15px;
+    letter-spacing: 3.8px;
+    color: #CCC8FF;
+    text-transform: uppercase;
+    text-align: right;  
+    padding-bottom: 20px;
+    text-align: left;
+}
+/* Zgodnie z wymaganiami dodałem właściwość text-align right do h1. Nie za bardzo tylko wiem w jakim celu, nie widzę zmiany*/
+p {
+    color: #CCC8FF;
+    opacity:0.8;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/*
+ZAGADNIENIE PONADPROGRAMOWE
+Rekomendowany zestaw właściwości, które pozwalają na ukrycie tekstu w taki sposób,
+że będzie niewidoczny do standardowego użytkownika, a czytniki ekranowe wciąż będą go czytać.
+Więcej na ten temat: https://webaim.org/techniques/css/invisiblecontent/
+*/
+.screen-reader-only {
+    position: absolute;
+    left: -10000px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+/*
+Sekcja pomocnicza, aby zwizualizować pozycje głównych bloków strony. Będzie usunięta w następnych krokach.
+*/
+.page-header {
+    background-color: transparent;
+    
+}
+
+.page-content {
+    background-color: transparent;
+}
+
+.page-footer {
+    background-color:transparent;
+}
+
+.content-section {
+    background-color: transparent;
+}
+.content-section:nth-child(odd) {
+    background-color: transparent;
+}
+/*
+Koniec sekcji pomocniczej
+*/
+
+/*
+Ustawiając sekcje nagłówka i stopki w pozycji 'fixed' sprawiamy,
+że niezależnie od pozycji paska przewijania elementy te będą znajdowały się
+w tej samej pozycji względem okna przeglądarki.
+Natomiast pozycję tę ustawiamy za pomocą parametrów 'top', 'bottom', 'right', 'left'.
+*/
+.page-header {
+    position: fixed;
+    top: 50px;
+    left: 50px;
+}
+
+.page-footer {
+    position: fixed;
+    bottom: 50px;
+    left: 50px;
+}
+
+/*
+Lewy margines ustawiony na kontenerze z główną zawartością strony sprawia,
+że nie będzie ona nachodzić na nagłówek i stopkę niezależnie od pozycji paska przewijania.
+Na projekcie graficznym sekcja menu ma szerokość około 170px i jest oddalona od krawędzi ekranu
+o 50px, więc można założyć, że 220px marginesu będzie wartością stosunkowo bezpieczną.
+Z kolei spady (padding) nadane na kontener wyznaczają minimalną odległość, na jaką będzie oddalona
+treść strony od otaczających ją granic kontenera (wartość "0 10%" jest
+skrótem od padding-top: 0, padding-bottom: 0, padding-left: 10%, padding-right: 10%).
+Właściwość "text-align: right" przykleja zawartość do prawej strony
+(oddziałuje na elementy, które są elementami inline'owymi, np. tekst, znaczniki <a>, <span> czy elementy z nadanym stylem "display: inline-block").
+*/
+.page-content {
+    margin-left: 220px;
+    padding: 0 10%;
+    text-align: right;
+}
+
+/*
+Projekt graficzny zakłada, że każda sekcja strony będzie wypełniać całą wysokość okna przeglądarki
+lub więcej, jeśli zawartość danej sekcji jest wyższa. Dlatego świetnym rozwiązaniem
+będzie użycie jednostki "vh", która oznacza 1% wysokości okna przeglądarki z właściwością "min-height",
+która wymusza wysokość elementu na zadaną wartość lub wyższą.
+*/
+.content-section {
+    min-height: 100vh;
+}
+
+
+
+
+.concerts__image {
+   
+    border-bottom: 3px solid #EF008E;
+    
+
+}
+.band-members {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(200px, 1fr));
+    padding-top: 200px;
+    opacity: 0.8;
+    font-family: "Open Sans";
+    letter-spacing: 1.5px;
+    color: #DBD8FB;
+    text-transform: uppercase;
+    text-align: left;
+    opacity: 0.8;
+}
+.band-members__desc {
+    letter-spacing: 3.5px;
+    opacity: 0.5;
+    text-transform: none; 
+    opacity: 0.1;
+}
+
+.concerts__image{
+    width: 100%;
+   
+}
+.concerts {
+    
+    padding-left: 30%;
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: auto;
+    gap: 40px;
+    text-align: right;
+}
+.concerts__info {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    letter-spacing: 3.5px;
+    font-weight: 600;
+  }
+.concerts__date {
+    margin-top: 20px;
+    padding-top: 10px;
+    margin-bottom: 0;
+}
+.concerts__location {
+    padding: 0;
+    margin: 0;
+}
+.concerts__info__button {
+    position: relative;
+  
+}
+.button{
+    font-weight: 600;
+    font-size: 12px;
+    height:40px;
+    width: 130px;
+    margin-top: 25%;
+    margin-bottom:25%;
+    letter-spacing: 1.6px;
+    color: #CCC8FF;
+    background-color: #25072E;
+    border:none;
+    border-radius: 5px;
+    text-transform: uppercase;
+    background-color:rgb(219, 216, 251, 0.1);
+    opacity: 0.6;
+}
+.button:hover {
+border: 1px solid white;
+}
+.button:disabled {
+    opacity:0.1;
+    }
+
+.concerts__location {
+    opacity: 0.5;
+    text-align: left;
+    font-size: 12px;
+   
+  }
+.concerts__info {
+    text-align: left;
+}
+iframe {
+    width:90%;
+    
+    border-top: 5px solid #EF008E;
+}
+.gallery__image{
+    width: 100%;
+    border-top: 5px solid #EF008E;
+}
+.gallery {
+    width:100%;
+    padding-left: 30%;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: auto;
+    gap: 20px;
+   }
+
+
+.content-section__contact {
+    text-align: left;
+    padding-left:30%;
+    display: grid;
+    grid-template-columns: 600px 150px;
+    width: 800px;
+    
+}
+.content-section__contact .gallery__image {
+    border: none;
+    width:100%;
+    padding-right: 20%;
+    
+}
+address {
+    font-size: 12px;
+    letter-spacing: 1.6px;
+    color: #CCC8FF;
+    font-style: normal;
+    width:400px;
+    margin-top: 50%;
+    padding: 50% 40% 50% 0%;
+    text-align: left;
+    opacity:0.6;
+}
+form {
+    padding-left: 30%;
+}
+.form__field{
+    margin-top: 20px;
+    text-align: left;
+}
+.form__label{
+    color: #CCC8FF;
+    font-family: "Open Sans";
+    opacity: 0.6;
+
+}
+.form__input{
+    height:30px;
+    width: 300px;
+    background-color: #DBD8FB;
+    opacity: 0.1;
+    border: none;
+    border-radius: 3px;
+    margin-top: 5px;
+}
+
+
+.about-section__desc{
+    display: block;
+    bottom: 280px;
+    left: 115px;
+    width: 400px;
+    height: 400px;
+    border-bottom: 3px solid #EF008E;
+    text-align: left;
+    padding: 40px;
+    background-color: #25072E;
+    position: relative;
+}
+.about-section__img {
+    border-top: 3px solid #EF008E;
+}
+a {
+
+    text-decoration: none;
+    font-family: "Open Sans";
+    font-weight: bold;
+    font-size: 13px;
+    letter-spacing: 6.7px;
+    color: #EF008E;
+    opacity: 0.8;
+    text-transform: uppercase;
+    
+}
+a:hover {
+    letter-spacing: 6.5px; 
+    opacity: 1;
+}
+li {
+    margin-top: 10px;
+}
+
+.form__field .button{
+    position: relative;
+    bottom:200px;
+}
+@media screen and (max-width: 1200px)  {
+    .form__field .button {
+      position: static;
+    }
+}
+@media screen and (max-width: 1600px)  {
+    .form__field .button {
+        position: relative;
+        bottom:100px;
+    }
+}
